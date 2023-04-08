@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # new apps
     'store.apps.StoreConfig'
 ]
 
@@ -109,6 +110,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+# MEDIA STORAGE
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media/'
 
