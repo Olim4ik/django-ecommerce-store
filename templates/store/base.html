@@ -24,13 +24,15 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li><a class="nav-link" href="/">Home</a></li>
+                        <li><a class="nav-link" href="/">Link</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 Library
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                {% comment %} <li><a class="dropdown-item" href="{% url "store:product_all" %}">All</a></li> {% endcomment %}
+                                <li><a class="dropdown-item" href="{% url "store:all_produts" %}">All</a></li>
                                 {% for c in categories %}
                                 <li {% if category.slug == c.slug %}class="selected" {% endif %}>
                                     <a class="dropdown-item" href="{{ c.get_absolute_url }}">{{ c.name|title }}</a>
