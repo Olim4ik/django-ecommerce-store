@@ -1,0 +1,1 @@
+# python manage.py test - searches and runs test files
