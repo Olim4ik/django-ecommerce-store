@@ -6,6 +6,8 @@ from django.urls import include, path
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('store.urls'), name='store'),
+    path('basket/', include('store_basket.urls'), name='store_basket'),
+
 ]
 
 # path to media files in DEBUG mode
