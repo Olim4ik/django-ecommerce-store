@@ -48,6 +48,7 @@ TEMPLATES = [
 
                 # our custom data - that available in all tempaltes:
                 'store.context_processors.categories',
+                'store_basket.context_processors.basket',
             ],
         },
     },
