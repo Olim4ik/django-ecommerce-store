@@ -1,8 +1,4 @@
-{% extends "./base.html" %}
-{% load static %} 
-{% block title %}BookStore{% endblock %} 
-
-{% block content %}
+{% extends "./base.html" %} {% load static %} {% block title %}BookStore{% endblock %} {% block content %}
 
 <main>
     <section class="py-5 text-center container">
@@ -27,8 +23,8 @@
                 {% for product in products %}
 
                 <div class="col">
-                    <div class="card shadow-sm">
-                        <img class="img-fluid" alt="Responsive image" src="{{ product.image.url }}" />
+                    <div class="card shadow-sm">    
+                        <img style="height: 210px;" class="img-fluid" alt="Responsive image" src="{{ product.image.url }}" />
                         <div class="card-body">
                             <p class="card-text">
                                 <a class="text-dark text-decoration-none" href="{{ product.get_absolute_url }}">
