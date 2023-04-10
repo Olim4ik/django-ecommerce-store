@@ -47,12 +47,16 @@ class Basket():
         basket = self.basket.copy()
 
         for product in products:
-            basket[str(product.id)['product']] = product
+            basket[str(product.id)]['product'] = product
 
         for item in basket.values():
             item['price'] = Decimal(item['price'])
             item['total_price'] = item['price'] * item['qty']
             yield item
 
-
+    def get_total_price(self):
+        """
+        Get the basket data and count the total price of items
+        """
+        return sum(Decimal(item['price']) * item['qty'] for item in self.basket.values())
 
