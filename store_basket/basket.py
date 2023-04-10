@@ -18,6 +18,9 @@ class Basket():
         self.basket = basket  # by doing this we give access to this variable from outer functions
         # print(self.basket)
 
+    def save(self):
+        self.session.modified = True
+
     def add(self, product, qty):
         """
         Adding and updating the users basket session data
@@ -28,7 +31,7 @@ class Basket():
             self.basket[product_id] = {'price': str(product.price), 'qty': int(qty)}
         print("BASKET: ", self.basket)
 
-        self.session.modified = True
+        self.save()
 
     def __len__(self):
         """
@@ -59,4 +62,18 @@ class Basket():
         Get the basket data and count the total price of items
         """
         return sum(Decimal(item['price']) * item['qty'] for item in self.basket.values())
+
+    def delete(self, product):
+        """
+        Delete item from session data
+        """
+        product_id = str(product)
+
+        if product_id in self.basket:
+            del self.basket[product_id]
+            print(product_id)
+            self.save()
+
+
+
 
