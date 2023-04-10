@@ -27,15 +27,15 @@
                             <div class="col-6">
                                 <label for="select">Qty</label>
                                 <select id="select">
-                                    <option value="">1</option>
-                                    <option value="">2</option>
-                                    <option value="">3</option>
-                                    <option value="">4</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
                                 </select>
 
                             </div>
                             <div class="col-6 text-end">
-                                <button type="button" class="btn btn-secondary btn-sm">Add tobasket</button>
+                                <button type="button" id="add-button" value="{{ product.id }}" class="btn btn-secondary btn-sm">Add to basket</button>
                             </div>
                         </div>
                     </div>
@@ -44,4 +44,28 @@
         </div>
     </main>
 </div>
+
+<script type="text/javascript">
+
+    $(document).on('click', '#add-button', function (e) {
+        e.preventDefault();
+        //console.log().text())
+        $.ajax({
+            type: 'POST',
+            url: '{% url "store_basket:basket_add" %}',
+            data: {
+                productid: $('#add-button').val(),
+                productqty: $('#select option:selected').text(),
+                csrfmiddlewaretoken: "{{csrf_token}}",
+                action: 'post'
+            },
+            success: function (json) {
+                //console.log(json)
+               document.getElementById("basket-qty").innerHTML = json.qty
+            },
+            error: function (xhr, errmsg, err) {}
+        });
+    })
+</script>
+
 {% endblock %}
