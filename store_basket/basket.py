@@ -27,9 +27,11 @@ class Basket():
         """
         product_id = str(product.id)
 
-        if product_id not in self.basket:
+        if product_id in self.basket:
+            self.basket[product_id]['qty'] = qty
+        else:
             self.basket[product_id] = {'price': str(product.price), 'qty': int(qty)}
-        print("BASKET: ", self.basket)
+        # print("BASKET: ", self.basket)
 
         self.save()
 
@@ -45,7 +47,7 @@ class Basket():
         and return products
         """
         product_ids = self.basket.keys()
-        print("PRODUCT ID: ", product_ids)
+        # print("PRODUCT ID: ", product_ids)
         products = Product.objects.filter(id__in=product_ids)
         basket = self.basket.copy()
 
@@ -62,16 +64,26 @@ class Basket():
         Get the basket data and count the total price of items
         """
         return sum(Decimal(item['price']) * item['qty'] for item in self.basket.values())
+    
+    def update(self, product, qty):
+        """
+        Update item from session data
+        """
+        product_id = str(product)
+
+        if product_id in self.basket:
+            self.basket[product_id]['qty'] = qty
+
+        self.save()
 
     def delete(self, product):
         """
-        Delete item from session data
+        Delete values from session data
         """
         product_id = str(product)
 
         if product_id in self.basket:
             del self.basket[product_id]
-            print(product_id)
             self.save()
 
 
