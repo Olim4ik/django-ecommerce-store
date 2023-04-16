@@ -18,9 +18,9 @@ class TestBasketView(TestCase):
                                slug='django-beginners', price='20.00', image='django')
 
         self.client.post(reverse('store_basket:basket_add'), {
-                         "productid": 1, "productqty": 1, "action": "post"}, xhr=True)
+                        "productid": 1, "productqty": 1, "action": "post"}, xhr=True)
         self.client.post(reverse('store_basket:basket_add'), {
-                         "productid": 2, "productqty": 2, "action": "post"}, xhr=True)
+                        "productid": 2, "productqty": 2, "action": "post"}, xhr=True)
 
     def test_basket_url(self):
         """
