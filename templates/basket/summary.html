@@ -129,6 +129,7 @@
           action: "post",
         },
         success: function (json) {
+          console.log(json)
   
           total = (parseFloat(json.subtotal) + 11.50).toFixed(2);
           document.getElementById("basket-qty").innerHTML = json.qty;

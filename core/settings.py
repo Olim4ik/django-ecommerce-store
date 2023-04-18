@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     # new apps
     'store.apps.StoreConfig',
     'store_basket.apps.StoreBasketConfig',
+    'account.apps.AccountConfig',
 ]
 
 MIDDLEWARE = [
@@ -97,5 +98,11 @@ STATICFILES_DIRS = [
 # MEDIA STORAGE
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media/'
+
+# Custom User Model
+AUTH_USER_MODEL = 'account.UserBase'
+LOGIN_REDIRECT_URL = '/account/dashboard'
+LOGIN_URL = '/account/login/'
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

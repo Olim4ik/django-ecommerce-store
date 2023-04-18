@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
+from core import settings
 
 
 class Category(models.Model):
@@ -28,8 +29,8 @@ class Product(models.Model):
      connected Products also will be deleted """
     category = models.ForeignKey(Category, related_name='product',
                                  on_delete=models.CASCADE)  # connection with category table
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE,
-                                    related_name='product_creator')  # connection with user table
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+                                    related_name='product_creator')  # connection with user table (User)
     title = models.CharField(max_length=255)
     author = models.CharField(max_length=255, default='admin')
     description = models.TextField(blank=True)
